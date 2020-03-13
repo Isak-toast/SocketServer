@@ -1,0 +1,5 @@
+﻿  SocketServerDlg.cpp
+C:\Users\uxuj1\source\repos\socketserver\SocketServer\SocketServerDlg.cpp(275,37): warning C4244: '=': 'wchar_t'에서 'unsigned char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\uxuj1\source\repos\socketserver\SocketServer\SocketServerDlg.cpp(276,37): warning C4244: '=': 'wchar_t'에서 'unsigned char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\uxuj1\source\repos\socketserver\SocketServer\SocketServerDlg.cpp(278,33): warning C4244: '=': 'wchar_t'에서 'unsigned char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  SocketServer.vcxproj -> C:\Users\uxuj1\source\repos\socketserver\Debug\SocketServer.exe
