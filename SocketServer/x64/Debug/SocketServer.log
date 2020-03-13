@@ -1,0 +1,15 @@
+﻿  pch.cpp
+  CClientSocket.cpp
+  CListenSocket.cpp
+C:\Users\withrobot\source\repos\SocketServer\SocketServer\CListenSocket.cpp(33,73): warning C4311: '형식 캐스트': 'POSITION'에서 'int'(으)로 포인터가 잘립니다.
+C:\Users\withrobot\source\repos\SocketServer\SocketServer\CListenSocket.cpp(33,73): warning C4302: '형식 캐스트': 'POSITION'에서 'int'(으)로 잘립니다.
+C:\Users\withrobot\source\repos\SocketServer\SocketServer\CListenSocket.cpp(63,15): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\withrobot\source\repos\SocketServer\SocketServer\CListenSocket.cpp(64,53): warning C4311: '형식 캐스트': 'POSITION'에서 'int'(으)로 포인터가 잘립니다.
+C:\Users\withrobot\source\repos\SocketServer\SocketServer\CListenSocket.cpp(64,53): warning C4302: '형식 캐스트': 'POSITION'에서 'int'(으)로 잘립니다.
+  SocketServer.cpp
+  SocketServerDlg.cpp
+C:\Users\withrobot\source\repos\SocketServer\SocketServer\SocketServerDlg.cpp(275,37): warning C4244: '=': 'wchar_t'에서 'unsigned char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\withrobot\source\repos\SocketServer\SocketServer\SocketServerDlg.cpp(276,37): warning C4244: '=': 'wchar_t'에서 'unsigned char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\withrobot\source\repos\SocketServer\SocketServer\SocketServerDlg.cpp(278,33): warning C4244: '=': 'wchar_t'에서 'unsigned char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  SocketServer.vcxproj -> C:\Users\withrobot\source\repos\SocketServer\x64\Debug\SocketServer.exe

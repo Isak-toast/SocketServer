@@ -268,14 +268,58 @@ void CSocketServerDlg::FileList() {
 			continue;
 	}
 }
-void CSocketServerDlg::MessageBox_control(CString strBuffer) {
+void CSocketServerDlg::MessageBox_control(unsigned char* strBuffer) {
 
 	LPRGAZE_PACKET* m_packet = new LPRGAZE_PACKET;
+	CString pdata;
+	//char temp[1024];
+	char strResult[1024];
+	memset(m_packet->pData, NULL, 255);
+	CSocketServerDlg* pMain = (CSocketServerDlg*)AfxGetMainWnd();
+	CString strTmp = _T("");
+	//int nLen = WideCharToMultiByte(CP_UTF8, 0, strBuffer, lstrlenW(strBuffer), NULL, 0, NULL, NULL);
+	//WideCharToMultiByte(CP_UTF8, 0, strBuffer, lstrlenW(strBuffer), strResult, nLen, NULL, NULL);
+	for (int i = 0; i < 25; i++)
+		TRACE("%x\n", strBuffer[i]);
 
-	m_packet->preamble[0] = strBuffer[0];
-	m_packet->preamble[1] = strBuffer[1];
-	m_packet->totalLength = strBuffer[2] + strBuffer[3] + strBuffer[4] + strBuffer[5];
-	m_packet->msgType = strBuffer[6];
+
+	for (int i = 0; i < sizeof(strBuffer); i++) {
+		if (strBuffer[i] == 'W' && strBuffer[i + 1] == 'R') {
+			m_packet->preamble[0] = strBuffer[i];
+			m_packet->preamble[1] = strBuffer[i + 1];
+			memcpy(&m_packet->totalLength, &strBuffer[i + 2], sizeof(int));
+			//m_packet->totalLength = strBuffer[i + 2] + strBuffer[i + 3] + strBuffer[i + 4] + strBuffer[i + 5];
+			m_packet->msgType = strBuffer[i + 6];
+			for (int j = 0; j < (m_packet->totalLength - 8); j++) {
+				m_packet->pData[j] = strBuffer[i + j + 7];
+			}
+
+		}
+
+	}
+	wchar_t strUnicode[256] = { 0, };
+	int nLen = MultiByteToWideChar(CP_UTF8, 0, (char*)&m_packet->pData[2], m_packet->pData[1], NULL, NULL);
+	MultiByteToWideChar(CP_UTF8, 0, (char*)&m_packet->pData[2], m_packet->pData[1], strUnicode, nLen);
+	USES_CONVERSION;
+	TRACE("%c\n", m_packet->preamble[0]);
+	//TRACE("%s\n", strResult);
+	TRACE("%c\n", m_packet->preamble[1]);
+	TRACE("%d\n", sizeof(strBuffer));
+	TRACE("%d\n", m_packet->totalLength);
+	//TRACE("%d\n", sizeof(strResult));
+	TRACE("%x\n", m_packet->msgType);
+	for (int i = 0; m_packet->pData[i] != NULL; i++)
+		TRACE("%x\n", m_packet->pData[i]);
+	TRACE("%s\n", W2A(strUnicode));
+	strTmp.Format(_T("%s"), strUnicode);
+	pMain->m_List.AddString(strTmp);  // 메시지 리스트(메시지창?)에 입력받은 메시지 띄우기
+	pMain->m_List.SetCurSel(pMain->m_List.GetCount() - 1);
+
+	/*
+	if (m_packet->preamble[0] == 'W' && m_packet->preamble[1] == 'R') {
+
+
+	}
 
 	int Answer;
 	Answer = AfxMessageBox(strBuffer, MB_YESNO);
@@ -289,8 +333,9 @@ void CSocketServerDlg::MessageBox_control(CString strBuffer) {
 
 		AfxMessageBox(_T("no"));
 	}
-
+	*/
 }
+
 LRESULT CSocketServerDlg::OnMyMessage(WPARAM wParam, LPARAM lParam) 
 {
 	AfxMessageBox(_T("Hello!!"));
